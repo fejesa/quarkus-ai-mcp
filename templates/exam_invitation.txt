@@ -1,0 +1,10 @@
+p><strong>Registration ID:</strong> {{registration_id}}</p>
+<p><strong>University:</strong> {{university_name}}</p>
+<p><strong>Department:</strong> {{faculty_name}}</p>
+<p><strong>Year of Study:</strong> {{session_id}}</p>
+<p></p>
+
+<p>Dear {{first_name}} {{last_name}},</p><p></p>
+<p>We are pleased to inform you that a workstation has been reserved for you to participate in the entrance examination scheduled for {{exam_date}}. Your official invitation document is available in PDF format through your applicant account. Please download, print, and bring this invitation with you on the day of the examination, as it will serve as your authorization for entry into the testing location.</p>
+<p>We kindly advise you to read the instructions carefully, as the invitation also contains details regarding permitted items, arrival time, and other organizational information essential for a smooth examination process.</p>
+<p></p><p>Sincerely,</p><p>Your Admissions Office</p>

@@ -1,0 +1,11 @@
+<p><strong>Registration ID:</strong> {{registration_id}}</p>
+<p><strong>University:</strong> {{university_name}}</p>
+<p><strong>Department:</strong> {{faculty_name}}</p>
+<p><strong>Year of Study:</strong> {{session_id}}</p>
+<p></p>
+
+<p>Dear {{first_name}} {{last_name}},</p><p></p>
+<p>We would like to remind you that completing your registration requires payment of the participation fee in the amount of EUR {{payment_amount}}. The fee must be paid between {{payment_date_from}} and {{payment_date_to}}, and punctual payment is a prerequisite for being admitted to the entrance examination. Please note that incomplete or late payment will result in the cancellation of your registration and your application cannot be considered further.</p>
+<p>Payments can be made exclusively through your applicant account, where multiple secure options are available. Upon successful payment, both a registration and a payment confirmation will be issued automatically.</p>
+<p><strong>Please ensure:</strong> Before making payment, verify that you have selected the correct study program and location. Once the fee is paid, no changes can be accommodated, and withdrawal from registration will no longer be possible.</p>
+<p></p><p>Sincerely,</p><p>Your Admissions Office</p>

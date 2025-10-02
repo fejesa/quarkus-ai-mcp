@@ -1,0 +1,11 @@
+<p><strong>Registration ID:</strong> {{registration_id}}</p>
+<p><strong>University:</strong> {{university_name}}</p>
+<p><strong>Department:</strong> {{faculty_name}}</p>
+<p><strong>Year of Study:</strong> {{session_id}}</p>
+<p></p>
+
+<p>Dear {{first_name}} {{last_name}},</p><p></p>
+<p>We are pleased to confirm your preliminary registration for the upcoming admissions procedure. Your personal processing number is <strong>{{registration_id}}</strong>, which will serve as your unique identifier throughout this process. Please keep this number in a safe place, as you will need it for all future logins to your applicant account.</p>
+<p><strong>Important:</strong> To participate in the entrance examination, it is mandatory to pay the fee of EUR {{payment_amount}}. The payment must be received no later than {{payment_date_to}}. You may complete the transaction securely online via your applicant account, where detailed instructions are provided.</p>
+<p>We kindly remind you that only applicants who have successfully settled the fee within the specified period will be admitted to the test.</p>
+<p></p><p>Sincerely,</p><p>Your Admissions Office</p>

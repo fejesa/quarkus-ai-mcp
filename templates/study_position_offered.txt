@@ -1,0 +1,10 @@
+<p><strong>Registration ID:</strong> {{registration_id}}</p>
+<p><strong>University:</strong> {{university_name}}</p>
+<p><strong>Department:</strong> {{faculty_name}}</p>
+<p><strong>Year of Study:</strong> {{session_id}}</p>
+<p></p>
+
+<p>Dear {{first_name}} {{last_name}},</p><p></p>
+<p>It is with great pleasure that we inform you that, based on your examination performance and the subsequent ranking, you have been awarded a place of study in the faculty of {{faculty_name}} for the academic year {{session_id}}. This offer is contingent upon your timely reservation of the place and the completion of all required admission procedures within the designated deadline. Instructions for reserving your place are available through your applicant account, where further guidance documents may also be found.</p>
+<p>Please ensure that you act within the specified timeframe, as failure to do so will result in forfeiture of the offer, and your place may be allocated to another candidate on the waiting list.</p>
+<p></p><p>Sincerely,</p><p>Your Admissions Office</p>

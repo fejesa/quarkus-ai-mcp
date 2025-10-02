@@ -1,0 +1,10 @@
+p><strong>Registration ID:</strong> {{registration_id}}</p>
+<p><strong>University:</strong> {{university_name}}</p>
+<p><strong>Department:</strong> {{faculty_name}}</p>
+<p><strong>Year of Study:</strong> {{session_id}}</p>
+<p></p>
+
+<p>Dear {{first_name}} {{last_name}},</p><p></p>
+<p>Our records indicate that your participation fee has not yet been settled. Please be advised that without full and timely payment, admission to the entrance examination cannot be granted. The required amount must be paid through your applicant account, which provides several secure online payment methods for your convenience.</p>
+<p>To finalize the transaction, please follow the “Online Payment” option available in your account. Once payment is completed, a confirmation will be issued and your registration status will be updated accordingly. To avoid potential technical delays, we strongly recommend completing payment well before the deadline of {{payment_date_to}}.</p>
+<p></p><p>Sincerely,</p><p>Your Admissions Office</p>
