@@ -7,7 +7,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.MediaType;
 
 @Path("/message-template")
-public class MessageTemplateResource {
+public class MessageTemplateService {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

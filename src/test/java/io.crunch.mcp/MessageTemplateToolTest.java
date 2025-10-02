@@ -12,9 +12,8 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 @QuarkusTest
-class MessageTemplateParameterToolTest {
+class MessageTemplateToolTest {
 
     @Test
     void shouldListTemplateParameters() {
@@ -29,6 +28,29 @@ class MessageTemplateParameterToolTest {
                             .toList();
                     assertThat(paramNames).containsAll(List.of("registration_id", "session_id"));
                 }).thenAssertResults();
+    }
+
+    @Test
+    void shouldListTemplateDescriptors() {
+        var client = McpAssured.newConnectedStreamableClient();
+        client.when()
+                .toolsCall("list_template_descriptors", Map.of("page", 0, "size", 10), r -> {
+                    var paramNames = ((List<TextContent>) r.content())
+                            .stream()
+                            .map(TextContent::text)
+                            .map(this::toTemplateDescriptor)
+                            .map(MessageTemplateDescriptor::getName)
+                            .toList();
+                    assertThat(paramNames).containsAll(List.of("Confirm Registration", "Payment Confirmation"));
+                }).thenAssertResults();
+    }
+
+    private MessageTemplateDescriptor toTemplateDescriptor(String t) {
+        try {
+            return new ObjectMapper().readValue(t, MessageTemplateDescriptor.class);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private TemplateParameter toTemplateParameter(String t) {
