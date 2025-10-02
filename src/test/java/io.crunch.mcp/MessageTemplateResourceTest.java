@@ -16,7 +16,7 @@ class MessageTemplateResourceTest {
           .when()
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
             .body("{\"template\":\"Hello, {{name}}!\",\"description\":\"A simple greeting template.\"}")
-            .post("/template")
+            .post("/message-template")
           .then()
             .statusCode(200);
     }

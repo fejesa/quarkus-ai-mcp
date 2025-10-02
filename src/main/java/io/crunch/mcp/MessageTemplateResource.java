@@ -6,7 +6,7 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.MediaType;
 
-@Path("/template")
+@Path("/message-template")
 public class MessageTemplateResource {
 
     @POST
