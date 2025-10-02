@@ -41,7 +41,7 @@ class MessageTemplateToolTest {
                             .map(this::toTemplateDescriptor)
                             .map(MessageTemplateDescriptor::getName)
                             .toList();
-                    assertThat(paramNames).containsAll(List.of("Confirm Registration", "Payment Confirmation"));
+                    assertThat(paramNames).containsAll(List.of("confirm_registration", "payment_confirmation"));
                 }).thenAssertResults();
     }
 

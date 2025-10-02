@@ -9,10 +9,10 @@ insert into TEMPLATE_PARAMETER (id, name, description)
 
 
 insert into TEMPLATE_DESCRIPTOR (id, name, description)
-    VALUES (nextval('TEMPLATE_DESCRIPTOR_SEQ'), 'Confirm Registration', 'Template to confirm user registration');
+    VALUES (nextval('TEMPLATE_DESCRIPTOR_SEQ'), 'confirm_registration', 'Template to confirm user registration');
 insert into TEMPLATE_DESCRIPTOR (id, name, description)
-    VALUES (nextval('TEMPLATE_DESCRIPTOR_SEQ'), 'Payment Confirmation', 'Template to confirm payment of semester fee');
+    VALUES (nextval('TEMPLATE_DESCRIPTOR_SEQ'), 'payment_confirmation', 'Template to confirm payment of semester fee');
 insert into TEMPLATE_DESCRIPTOR (id, name, description)
-    VALUES (nextval('TEMPLATE_DESCRIPTOR_SEQ'), 'Payment Notification', 'Template to notify user about upcoming payment of semester fee');
+    VALUES (nextval('TEMPLATE_DESCRIPTOR_SEQ'), 'payment_notification', 'Template to notify user about upcoming payment of semester fee');
 insert into TEMPLATE_DESCRIPTOR (id, name, description)
-    VALUES (nextval('TEMPLATE_DESCRIPTOR_SEQ'), 'Payment Reminder', 'Template to remind user about overdue payment of semester fee');
+    VALUES (nextval('TEMPLATE_DESCRIPTOR_SEQ'), 'payment_reminder', 'Template to remind user about overdue payment of semester fee');
