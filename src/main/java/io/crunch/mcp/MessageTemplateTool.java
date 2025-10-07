@@ -145,3 +145,6 @@ public class MessageTemplateTool {
         }
     }
 }
+
+record MessageTemplate(String name, String description, String content) {
+}
