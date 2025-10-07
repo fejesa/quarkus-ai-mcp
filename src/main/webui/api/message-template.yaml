@@ -1,0 +1,40 @@
+---
+openapi: 3.1.0
+components:
+  schemas:
+    MessageTemplateRequest:
+      type: object
+      properties:
+        templateContent:
+          type: string
+        description:
+          type: string
+paths:
+  /api:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MessageTemplateRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+        "400":
+          description: Bad Request
+      summary: Create Template
+      tags:
+      - Message Template Resource
+info:
+  title: MessageTemplateAPI
+  version: 1.0.0-SNAPSHOT
+servers:
+- url: http://localhost:8080
+  description: Auto generated value
+- url: http://0.0.0.0:8080
+  description: Auto generated value
