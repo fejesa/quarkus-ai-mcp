@@ -1,0 +1,14 @@
+<p><strong>Customer ID:</strong> [[customer_id]]</p>
+<p><strong>Account Number:</strong> [[account_number]]</p>
+<p><strong>Branch name:</strong> [[branch_name]]</p>
+<p><strong>Branch ID:</strong> [[branch_id]]</p>
+<p><strong>Date:</strong> [[message_creation_date]]</p>
+<p></p>
+
+<h3>Reminder: Activate Your Account</h3>
+<p>Dear [[customer_name]],</p>
+<p>We noticed that your account registration is not yet complete. To begin enjoying the full benefits of your account, please finalize the activation process by verifying your identity through our secure portal.</p>
+<p>You can complete this in just a few minutes by visiting <a href="[[activation_link]]">our activation page</a>. Once your account is active, you will gain full access to online banking, debit card issuance, and other key financial services.</p>
+<p>If you have already completed your activation, kindly disregard this message. Otherwise, please ensure the process is completed before [[activation_deadline_date]].</p>
+
+<p></p><p>Sincerely,</p><p>Your [[bank_name]] Customer Care Team</p>

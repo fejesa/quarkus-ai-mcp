@@ -1,0 +1,19 @@
+<p><strong>Customer ID:</strong> [[customer_id]]</p>
+<p><strong>Account Number:</strong> [[account_number]]</p>
+<p><strong>Branch name:</strong> [[branch_name]]</p>
+<p><strong>Branch ID:</strong> [[branch_id]]</p>
+<p><strong>Date:</strong> [[message_creation_date]]</p>
+<p></p>
+
+<h3>Transaction Notification</h3>
+<p>Dear [[customer_name]],</p>
+<p>A transaction has been processed on your account ending with [[account_last_digits]]:</p>
+<ul>
+  <li><b>Transaction Type:</b> [[transaction_type]]</li>
+  <li><b>Amount:</b> [[transaction_amount]]</li>
+  <li><b>Date and Time:</b> [[transaction_datetime]]</li>
+</ul>
+<p>If you recognize this transaction, no further action is required. If this was not initiated by you, please contact us immediately through our <a href="[[fraud_reporting_link]]">security portal</a>.</p>
+<p>Your security is our top priority.</p>
+
+<p></p><p>Sincerely,</p><p>Your [[bank_name]] Security Team</p>

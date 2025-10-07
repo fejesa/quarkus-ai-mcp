@@ -1,0 +1,14 @@
+<p><strong>Customer ID:</strong> [[customer_id]]</p>
+<p><strong>Account Number:</strong> [[account_number]]</p>
+<p><strong>Branch name:</strong> [[branch_name]]</p>
+<p><strong>Branch ID:</strong> [[branch_id]]</p>
+<p><strong>Date:</strong> [[message_creation_date]]</p>
+<p></p>
+
+<h3>Confirmation: Loan Application Received</h3>
+<p>Dear [[customer_name]],</p>
+<p>We have received your loan application for the amount of [[loan_amount]] and it is currently under review. Our credit evaluation team will assess your eligibility and supporting documents with the utmost care and confidentiality.</p>
+<p>The review process typically takes up to [[review_duration_days]] business days. We will notify you promptly once a decision has been made. You can track the status of your application anytime via your online banking account.</p>
+<p>Thank you for choosing [[bank_name]] for your financial needs. We appreciate your trust and look forward to assisting you in achieving your goals.</p>
+
+<p></p><p>Sincerely,</p><p>Your [[bank_name]] Loan Services Team</p>

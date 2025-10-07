@@ -6,7 +6,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "TEMPLATE_PARAMETER")
-public class TemplateParameter extends PanacheEntity {
+public class MessageTemplateParameter extends PanacheEntity {
 
     private String name;
 

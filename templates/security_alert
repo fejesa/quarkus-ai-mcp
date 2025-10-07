@@ -1,0 +1,14 @@
+<p><strong>Customer ID:</strong> [[customer_id]]</p>
+<p><strong>Account Number:</strong> [[account_number]]</p>
+<p><strong>Branch name:</strong> [[branch_name]]</p>
+<p><strong>Branch ID:</strong> [[branch_id]]</p>
+<p><strong>Date:</strong> [[message_creation_date]]</p>
+<p></p>
+
+<h3>Security Alert: Suspicious Activity Detected</h3>
+<p>Dear [[customer_name]],</p>
+<p>We have detected unusual activity on your account ending with [[account_last_digits]]. For your security, certain transactions may have been temporarily suspended until verification is completed.</p>
+<p>Please review your recent transactions by logging into your secure account at <a href="[[security_portal_link]]">our security page</a>. If you confirm that the activity is unauthorized, contact our fraud prevention hotline at [[security_contact_number]] immediately.</p>
+<p>We take your safety seriously and appreciate your prompt attention to this matter.</p>
+
+<p></p><p>Sincerely,</p><p>Your [[bank_name]] Security Department</p>

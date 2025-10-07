@@ -13,9 +13,11 @@
         <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
         <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
         <quarkus.platform.version>3.28.2</quarkus.platform.version>
-        <quarkus-mcp-server-sse.version>1.6.0</quarkus-mcp-server-sse.version>
+        <quarkus-mcp-sse.version>1.6.0</quarkus-mcp-sse.version>
+        <quarkus-langchain4j.version>1.3.0</quarkus-langchain4j.version>
         <quarkus-quinoa.version>2.6.2</quarkus-quinoa.version>
         <assertj-core.version>3.26.3</assertj-core.version>
+        <ollama.testcontainer.version>1.21.3</ollama.testcontainer.version>
         <skipITs>true</skipITs>
         <surefire-plugin.version>3.5.3</surefire-plugin.version>
     </properties>
@@ -61,7 +63,22 @@
         <dependency>
             <groupId>io.quarkiverse.mcp</groupId>
             <artifactId>quarkus-mcp-server-sse</artifactId>
-            <version>${quarkus-mcp-server-sse.version}</version>
+            <version>${quarkus-mcp-sse.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkiverse.mcp</groupId>
+            <artifactId>quarkus-mcp-server-sse-client</artifactId>
+            <version>${quarkus-mcp-sse.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkiverse.langchain4j</groupId>
+            <artifactId>quarkus-langchain4j-mcp</artifactId>
+            <version>${quarkus-langchain4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkiverse.langchain4j</groupId>
+            <artifactId>quarkus-langchain4j-ollama</artifactId>
+            <version>${quarkus-langchain4j.version}</version>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
@@ -82,7 +99,13 @@
         <dependency>
             <groupId>io.quarkiverse.mcp</groupId>
             <artifactId>quarkus-mcp-server-test</artifactId>
-            <version>${quarkus-mcp-server-sse.version}</version>
+            <version>${quarkus-mcp-sse.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>ollama</artifactId>
+            <version>${ollama.testcontainer.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

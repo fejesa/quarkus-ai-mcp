@@ -8,7 +8,6 @@ import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -19,14 +18,14 @@ class MessageTemplateToolTest {
     void shouldListTemplateParameters() {
         var client = McpAssured.newConnectedStreamableClient();
         client.when()
-                .toolsCall("list_template_parameters", Map.of("page", 0, "size", 10), r -> {
+                .toolsCall("list_template_parameters", r -> {
                     var paramNames = ((List<TextContent>) r.content())
                             .stream()
                             .map(TextContent::text)
                             .map(this::toTemplateParameter)
-                            .map(TemplateParameter::getName)
+                            .map(MessageTemplateParameter::getName)
                             .toList();
-                    assertThat(paramNames).containsAll(List.of("registration_id", "session_id"));
+                    assertThat(paramNames).containsAll(List.of("account_number", "account_last_digits"));
                 }).thenAssertResults();
     }
 
@@ -34,28 +33,28 @@ class MessageTemplateToolTest {
     void shouldListTemplateDescriptors() {
         var client = McpAssured.newConnectedStreamableClient();
         client.when()
-                .toolsCall("list_template_descriptors", Map.of("page", 0, "size", 10), r -> {
+                .toolsCall("get_message_templates", r -> {
                     var paramNames = ((List<TextContent>) r.content())
                             .stream()
                             .map(TextContent::text)
-                            .map(this::toTemplateDescriptor)
-                            .map(MessageTemplateDescriptor::getName)
+                            .map(this::toMessageTemplate)
+                            .map(MessageTemplate::name)
                             .toList();
-                    assertThat(paramNames).containsAll(List.of("confirm_registration", "payment_confirmation"));
+                    assertThat(paramNames).containsAll(List.of("account_activation_reminder", "account_opening_confirmation"));
                 }).thenAssertResults();
     }
 
-    private MessageTemplateDescriptor toTemplateDescriptor(String t) {
+    private MessageTemplate toMessageTemplate(String t) {
         try {
-            return new ObjectMapper().readValue(t, MessageTemplateDescriptor.class);
+            return new ObjectMapper().readValue(t, MessageTemplate.class);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private TemplateParameter toTemplateParameter(String t) {
+    private MessageTemplateParameter toTemplateParameter(String t) {
         try {
-            return new ObjectMapper().readValue(t, TemplateParameter.class);
+            return new ObjectMapper().readValue(t, MessageTemplateParameter.class);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

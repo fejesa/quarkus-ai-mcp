@@ -1,31 +1,48 @@
 package io.crunch.mcp;
 
 import io.quarkiverse.mcp.server.Tool;
-import io.quarkiverse.mcp.server.ToolArg;
 import io.quarkus.logging.Log;
-import io.quarkus.panache.common.Page;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class MessageTemplateTool {
 
-    @Tool(
-            name = "list_template_parameters",
-            description = "List available message template parameters with pagination. Provide page index (starting from 0) and page size.")
-    public List<TemplateParameter> getTemplateParameters(
-            @ToolArg(description = "The page index", defaultValue = "0") int page,
-            @ToolArg(description = "The page size", defaultValue = "5") int size) {
-        Log.info("Getting template parameters with page index %d and size %d".formatted(page, size));
-        return TemplateParameter.findAll().page(Page.of(page, size)).list();
+    private final Path templatesFolder;
+
+    public MessageTemplateTool(@ConfigProperty(name = "app.templates.location") Path templatesFolder) {
+        this.templatesFolder = Paths.get(".").resolve(templatesFolder).toAbsolutePath().normalize();
     }
 
     @Tool(
-            name = "list_template_descriptors",
-            description = "List available message template names with pagination. Provide page index (starting from 0) and page size.")
-    public List<MessageTemplateDescriptor> getTemplateDescriptors(
-            @ToolArg(description = "The page index", defaultValue = "0") int page,
-            @ToolArg(description = "The page size", defaultValue = "5") int size) {
-        Log.info("Getting template names with page index %d and size %d".formatted(page, size));
-        return MessageTemplateDescriptor.findAll().page(Page.of(page, size)).list();
+            name = "list_template_parameters",
+            description = "List available message template parameters.")
+    public List<MessageTemplateParameter> getTemplateParameters() {
+        Log.info("Getting template parameters");
+        List<MessageTemplateParameter> messageTemplateParameters = MessageTemplateParameter.listAll();
+        return messageTemplateParameters;
+    }
+
+    @Tool(
+            name = "get_message_templates",
+            description = "Fetch all message templates")
+    public List<MessageTemplate> messageTemplates() {
+        Log.info("Loading all templates from folder: " + templatesFolder);
+        return MessageTemplateDescriptor.streamAll()
+                .map(e -> (MessageTemplateDescriptor) e)
+                .map(descriptor -> new MessageTemplate(descriptor.getName(), descriptor.getDescription(), loadTemplate(descriptor.getName())))
+                .toList();
+    }
+
+    private String loadTemplate(String name) {
+        try {
+            return Files.readString(Paths.get(templatesFolder.toString(), name));
+        } catch (IOException e) {
+            throw new MessageTemplateException("Error reading template file: " + name, e);
+        }
     }
 }
