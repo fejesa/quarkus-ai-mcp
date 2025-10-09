@@ -27,6 +27,8 @@ qodana.yaml
 /.quarkus/cli/plugins/
 
 **/.angular
+**/.vscode
+**/.junie
 **/node_modules
 **/.quinoa
 **/.editorconfig
