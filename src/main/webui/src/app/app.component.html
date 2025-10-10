@@ -20,6 +20,11 @@
         @if (msg) {
             <p-message severity="success">{{ msg }}</p-message>
         }
+        @if (loading) {
+            <div class="card">
+                <p-progressbar mode="indeterminate" [style]="{ height: '6px' }"></p-progressbar>
+            </div>
+        }
         <div class="content-input">
             <p-editor id="template_editor"
                       [(ngModel)]="templateContent"

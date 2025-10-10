@@ -7,6 +7,7 @@ import {EditorModule} from 'primeng/editor';
 import {MessageModule} from 'primeng/message';
 import {CommonModule} from '@angular/common';
 import {FloatLabelModule} from 'primeng/floatlabel';
+import {ProgressBarModule} from 'primeng/progressbar';
 import {MessageTemplateAPIService} from "./api/service/message-template.service";
 
 @Component({
@@ -20,7 +21,8 @@ import {MessageTemplateAPIService} from "./api/service/message-template.service"
         EditorModule,
         MessageModule,
         FormsModule,
-        FloatLabelModule
+        FloatLabelModule,
+        ProgressBarModule
     ],
     providers: [
         MessageTemplateAPIService
@@ -32,22 +34,27 @@ export class AppComponent {
     templateDescription = '';
     templateContent = '';
     msg = '';
+    loading = false;
 
     constructor(private messageTemplateAPIService: MessageTemplateAPIService) {
     }
 
     onClick() {
-        this.msg = 'Sent to LLM';
+        this.msg = 'Sent to Agent, waiting for response...';
+        this.loading = true;
         this.messageTemplateAPIService.postApi(({
             templateContent: this.templateContent,
             description: this.templateDescription
         })).subscribe({
             next: (response) => {
                 this.templateContent = response;
+                this.msg = 'Response received from Agent.';
+                this.loading = false;
             },
             error: (error) => {
                 this.msg = 'Error: ' + error.message;
                 console.error(error);
+                this.loading = false;
             }
         });
     }
