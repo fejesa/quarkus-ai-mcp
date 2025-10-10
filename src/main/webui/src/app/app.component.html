@@ -3,11 +3,15 @@
         <span class="title">HTML Message Template Editor</span>
         <div class="content-input">
             <p-floatlabel>
-                <input pInputText id="over_label" [(ngModel)]="templateDescription" autocomplete="off" pSize="large"
+                <input pInputText id="over_label"
+                       [(ngModel)]="templateDescription"
+                       autocomplete="off"
+                       pSize="large"
                        [style]="{width: '800px'}"/>
                 <label for="over_label">Type prompt about the message template content</label>
             </p-floatlabel>
             <p-button
+                    id="generate_button"
                     label="Generate"
                     (onClick)="onClick()"
                     [disabled]="!templateDescription"
@@ -17,7 +21,9 @@
             <p-message severity="success">{{ msg }}</p-message>
         }
         <div class="content-input">
-            <p-editor [(ngModel)]="templateContent" [style]="{ height: '500px', width: '900px' }">
+            <p-editor id="template_editor"
+                      [(ngModel)]="templateContent"
+                      [style]="{ height: '500px', width: '900px' }">
             </p-editor>
         </div>
     </div>

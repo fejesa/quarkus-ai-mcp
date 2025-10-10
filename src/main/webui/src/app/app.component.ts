@@ -30,10 +30,8 @@ import {MessageTemplateAPIService} from "./api/service/message-template.service"
 })
 export class AppComponent {
     templateDescription = '';
-
-    msg = '';
-
     templateContent = '';
+    msg = '';
 
     constructor(private messageTemplateAPIService: MessageTemplateAPIService) {
     }
