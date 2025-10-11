@@ -1,3 +1,5 @@
+<h3>Welcome to [[bank_name]]!</h3>
+<p></p>
 <p><strong>Customer ID:</strong> [[customer_id]]</p>
 <p><strong>Account Number:</strong> [[account_number]]</p>
 <p><strong>Branch name:</strong> [[branch_name]]</p>
@@ -5,7 +7,6 @@
 <p><strong>Date:</strong> [[message_creation_date]]</p>
 <p></p>
 
-<h3>Welcome to [[bank_name]]!</h3>
 <p>Dear [[customer_name]],</p>
 <p>We are pleased to confirm that your new account has been successfully created. Your account is now active and ready for transactions. You can manage your account easily and securely using our <a href="[[online_bank_link]]">online banking portal</a>.</p>
 <p>To get started, please log in and review your profile details to ensure all information is correct. You can also explore our range of digital services, such as mobile payments, investment tools, and automatic savings plans, all designed to help you manage your finances conveniently.</p>

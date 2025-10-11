@@ -1,3 +1,5 @@
+<h3>Important: Overdue Payment Notification</h3>
+<p></p>
 <p><strong>Customer ID:</strong> [[customer_id]]</p>
 <p><strong>Account Number:</strong> [[account_number]]</p>
 <p><strong>Branch name:</strong> [[branch_name]]</p>
@@ -5,7 +7,6 @@
 <p><strong>Date:</strong> [[message_creation_date]]</p>
 <p></p>
 
-<h3>Important: Overdue Payment Notification</h3>
 <p>Dear [[customer_name]],</p>
 <p>Our records indicate that your recent payment of [[overdue_amount]] due on [[original_due_date]] has not yet been received. Please make your payment immediately to avoid additional late fees or potential credit impact.</p>
 <p>You can make your payment securely through <a href="[[payment_portal_link]]">our payment portal</a>. If you have already made the payment, kindly disregard this message.</p>

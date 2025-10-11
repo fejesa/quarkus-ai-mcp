@@ -1,3 +1,5 @@
+<h3>Update on Your Loan Application</h3>
+<p></p>
 <p><strong>Customer ID:</strong> [[customer_id]]</p>
 <p><strong>Account Number:</strong> [[account_number]]</p>
 <p><strong>Branch name:</strong> [[branch_name]]</p>
@@ -5,7 +7,6 @@
 <p><strong>Date:</strong> [[message_creation_date]]</p>
 <p></p>
 
-<h3>Update on Your Loan Application</h3>
 <p>Dear [[customer_name]],</p>
 <p>After careful review of your recent loan application, we regret to inform you that we are unable to approve your request at this time. This decision was based on our internal credit assessment criteria.</p>
 <p>You may contact your branch advisor at [[advisor_email]] for more information or guidance on improving your credit profile for future applications. We encourage you to consider our financial planning services to help you prepare for your next request.</p>

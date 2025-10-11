@@ -1,3 +1,5 @@
+<h3>Your Monthly Account Statement is Ready</h3>
+<p></p>
 <p><strong>Customer ID:</strong> [[customer_id]]</p>
 <p><strong>Account Number:</strong> [[account_number]]</p>
 <p><strong>Branch name:</strong> [[branch_name]]</p>
@@ -5,7 +7,6 @@
 <p><strong>Date:</strong> [[message_creation_date]]</p>
 <p></p>
 
-<h3>Your Monthly Account Statement is Ready</h3>
 <p>Dear [[customer_name]],</p>
 <p>Your latest account statement for the period ending [[statement_end_date]] is now available. You can view or download it securely via <a href="[[statement_portal_link]]">our online banking portal</a>.</p>
 <p>We encourage you to review your transactions regularly and contact us if you notice any discrepancies. Keeping track of your finances helps ensure security and financial well-being.</p>

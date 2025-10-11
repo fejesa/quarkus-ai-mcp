@@ -1,3 +1,5 @@
+<h3>Congratulations: Your Loan Has Been Approved</h3>
+<p></p>
 <p><strong>Customer ID:</strong> [[customer_id]]</p>
 <p><strong>Account Number:</strong> [[account_number]]</p>
 <p><strong>Branch name:</strong> [[branch_name]]</p>
@@ -5,7 +7,6 @@
 <p><strong>Date:</strong> [[message_creation_date]]</p>
 <p></p>
 
-<h3>Congratulations: Your Loan Has Been Approved</h3>
 <p>Dear [[customer_name]],</p>
 <p>We are pleased to inform you that your loan application for [[loan_amount]] has been approved. Your loan reference number is [[loan_reference_id]]. The approved amount will be credited to your account within the next [[disbursement_timeframe]] business days.</p>
 <p>Details of your loan agreement, including repayment schedule and interest rate, can be reviewed online via your <a href="[[loan_portal_link]]">loan dashboard</a>. Please ensure you review and accept the terms to proceed with the disbursement.</p>

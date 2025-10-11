@@ -1,3 +1,5 @@
+<h3>Transaction Notification</h3>
+<p></p>
 <p><strong>Customer ID:</strong> [[customer_id]]</p>
 <p><strong>Account Number:</strong> [[account_number]]</p>
 <p><strong>Branch name:</strong> [[branch_name]]</p>
@@ -5,7 +7,6 @@
 <p><strong>Date:</strong> [[message_creation_date]]</p>
 <p></p>
 
-<h3>Transaction Notification</h3>
 <p>Dear [[customer_name]],</p>
 <p>A transaction has been processed on your account ending with [[account_last_digits]]:</p>
 <ul>

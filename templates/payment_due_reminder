@@ -1,3 +1,5 @@
+<h3>Upcoming Payment Due</h3>
+<p></p>
 <p><strong>Customer ID:</strong> [[customer_id]]</p>
 <p><strong>Account Number:</strong> [[account_number]]</p>
 <p><strong>Branch name:</strong> [[branch_name]]</p>
@@ -5,7 +7,6 @@
 <p><strong>Date:</strong> [[message_creation_date]]</p>
 <p></p>
 
-<h3>Upcoming Payment Due</h3>
 <p>Dear [[customer_name]],</p>
 <p>This is a friendly reminder that your next payment of [[payment_amount]] is due on [[payment_due_date]]. Please ensure sufficient funds are available in your account to avoid any late payment charges or service interruptions.</p>
 <p>You may complete your payment conveniently through our <a href="[[payment_portal_link]]">online banking system</a> or by visiting your nearest branch.</p>
