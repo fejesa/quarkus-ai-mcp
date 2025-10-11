@@ -5,7 +5,7 @@ components:
     MessageTemplateRequest:
       type: object
       properties:
-        templateContent:
+        content:
           type: string
         description:
           type: string

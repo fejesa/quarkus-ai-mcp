@@ -1,4 +1,4 @@
 package io.crunch.mcp;
 
-public record MessageTemplateRequest(String templateContent, String description) {
+public record MessageTemplateRequest(String content, String description) {
 }

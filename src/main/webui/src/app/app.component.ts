@@ -33,26 +33,26 @@ import {MessageTemplateAPIService} from "./api/service/message-template.service"
 export class AppComponent {
     templateDescription = '';
     templateContent = '';
-    msg = '';
+    message = '';
     loading = false;
 
     constructor(private messageTemplateAPIService: MessageTemplateAPIService) {
     }
 
     onClick() {
-        this.msg = 'Sent to Agent, waiting for response...';
+        this.message = 'Sent to Agent, waiting for response...';
         this.loading = true;
         this.messageTemplateAPIService.postApi(({
-            templateContent: this.templateContent,
+            content: this.templateContent,
             description: this.templateDescription
         })).subscribe({
             next: (response) => {
                 this.templateContent = response;
-                this.msg = 'Response received from Agent.';
+                this.message = 'Response received from Agent.';
                 this.loading = false;
             },
             error: (error) => {
-                this.msg = 'Error: ' + error.message;
+                this.message = 'Error: ' + error.message;
                 console.error(error);
                 this.loading = false;
             }

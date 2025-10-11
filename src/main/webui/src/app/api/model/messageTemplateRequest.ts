@@ -6,6 +6,6 @@
  */
 
 export interface MessageTemplateRequest {
-  templateContent?: string;
+  content?: string;
   description?: string;
 }

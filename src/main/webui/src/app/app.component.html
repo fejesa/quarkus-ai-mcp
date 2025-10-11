@@ -17,8 +17,8 @@
                     [disabled]="!templateDescription"
             ></p-button>
         </div>
-        @if (msg) {
-            <p-message severity="success">{{ msg }}</p-message>
+        @if (message) {
+            <p-message severity="success">{{ message }}</p-message>
         }
         @if (loading) {
             <div class="card">

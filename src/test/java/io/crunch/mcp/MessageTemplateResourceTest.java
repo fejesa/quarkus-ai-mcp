@@ -26,7 +26,7 @@ class MessageTemplateResourceTest {
         var template = given()
                 .when()
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
-                .body("{\"templateContent\":\"Hello, abc!\",\"description\":\"Generate simple greeting template.\"}")
+                .body("{\"content\":\"Hello, abc!\",\"description\":\"Generate simple greeting template.\"}")
                 .post("/api")
                 .then()
                 .statusCode(RestResponse.Status.OK.getStatusCode()).extract()

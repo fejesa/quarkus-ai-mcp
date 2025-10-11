@@ -76,11 +76,11 @@ public interface MessageTemplateGeneratorAssistant {
      * the provided {@link MessageTemplateRequest}.
      *
      * <p>
-     * The method behavior is determined by the state of the {@code templateContent} field:
+     * The method behavior is determined by the state of the {@code content} field:
      * </p>
      * <ul>
-     *   <li>If {@code templateContent} is empty, the AI generates a new HTML template.</li>
-     *   <li>If {@code templateContent} contains HTML, the AI refines and improves the existing template.</li>
+     *   <li>If {@code content} is empty, the AI generates a new HTML template.</li>
+     *   <li>If {@code content} contains HTML, the AI refines and improves the existing template.</li>
      * </ul>
      *
      * <p>
