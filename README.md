@@ -37,6 +37,8 @@ When a new business case arises — for example, *“A customer wants to request
 
 Optionally, the admin can provide a draft version of the template or simply leave it empty — and the AI takes care of the rest. The AI analyzes existing templates, retrieves placeholder definitions, and generates a **new, well-structured, stylistically consistent HTML message** that fits perfectly with the other templates.
 
+![HTML Template Editor](./docs/html-template-editor.gif)
+
 ## Technology Choices
 For this proof of concept, I chose a stack that combines **modern web development** with **AI integration** — and makes experimentation genuinely enjoyable:
 - **Angular with PrimeNG** – A perfect fit for building rich, interactive, and scalable single-page applications (SPAs). [PrimeNG](https://primeng.org/) provides a great set of ready-to-use UI components.
