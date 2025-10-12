@@ -120,16 +120,22 @@ public interface MessageTemplateGeneratorAssistant {
            - **Do not invent or add any new placeholders.**
            - Select only those placeholders relevant to the requested message description.
            - Use the fetched templates from `get_message_templates` as strict references for style, tone, structure, and formatting.
-        
+
         2. Generate or update the message template:
            - If generating a **new template** (templateContent is empty):
-               * **Always start the template with a standard header block** including the following placeholders in this order, if available: customer_id, account_number, branch_name, branch_id, message_creation_date. You may include additional placeholders from the tool results only if relevant to the description.
-               * **Always end the template with a standard closing block** with a polite signature, e.g., `<p>Sincerely,</p><p>Your [[bank_name]] Customer Care Team</p>`.
+               * **Always start the template with a title line** that clearly states the purpose or name of the message (for example, "Request an Additional Master Card" or "Payment Due Reminder").
+                 - This title must appear at the very top of the HTML content, before any other section.
+                 - Format it as a simple heading using an <h2> or <h3> tag, e.g. `<h2>Request an Additional Master Card</h2>`.
+               * **Immediately after the title**, include the standard header block with the following placeholders in this exact order (if available):
+                 `customer_id`, `account_number`, `branch_name`, `branch_id`, `message_creation_date`.
+                 You may include additional placeholders from the tool results only if relevant to the description.
+               * **Always end the template with a standard closing block** that includes a polite signature, e.g.,
+                 `<p>Sincerely,</p><p>Your [[bank_name]] Customer Care Team</p>`.
            - If updating an existing template (templateContent is provided):
-               * Preserve and refine the existing header and closing blocks.
+               * Preserve and refine the existing title, header, and closing blocks.
                * Adjust the body to match the description, placeholders, and style of reference templates.
            - Follow the structure, style, and tone of the reference templates exactly.
-        
+
         Formatting and content rules:
         - Use only <p>, <b>, <i>, <u>, <ul>, <ol>, <li>, <br>, <h2>, <h3>.
         - Placeholders must be in the format [[placeholder_name]].
