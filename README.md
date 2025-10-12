@@ -82,7 +82,7 @@ Here’s how the flow works:
 6. If needed, the user can manually fix invalid tags or fine-tune the content.
 
 The final output always follows the **same structure, style, and placeholder rules** as other templates — ensuring consistency across the entire messaging platform.
-👇
+
 ---
 
 ## Installation
