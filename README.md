@@ -1,15 +1,13 @@
 # How I Built an AI-Powered Template Generator with Quarkus, LangChain4j, and Ollama
 
 ## Introduction
-Businesses have customers, right? And many of them provide online services — shopping, banking, telecom, insurance, and so on.  
-But communicating with customers is never easy, especially in the digital era. Which channels are the right ones for a given business? Instant messaging, voice calls, or classic text-based messages?  
-What should the tone and style be — formal, friendly, or conversational? And most importantly: **what exactly does the business want to communicate?**
+Businesses have customers, right? And many of them provide online services — shopping, banking, telecom, insurance, and so on. But communicating with customers is never easy, especially in the digital era. Which channels are the right ones for a given business? Instant messaging, voice calls, or classic text-based messages? What should the tone and style be — formal, friendly, or conversational? And most importantly: **what exactly does the business want to communicate?**
 
 We can agree that most online services rely heavily on **text-based messaging** when communicating with their customers. Sometimes the messages are sent directly via email, other times through a **dedicated in-app messaging system**, where customers have a personal inbox. Typically, these messages are **HTML formatted** — for good reason: better readability, structured layout, support for images and hyperlinks, and a more professional look.
 
 Every business has its own communication style — formal or informal, personal or official — and all customer messages need to follow that same consistent structure and tone. This helps customers easily recognize and understand communications coming from the business.
 
-Now, imagine a company that has **dozens or even hundreds of customer notification types.**  
+Now, imagine a company that has **dozens or even hundreds of customer notification types.**
 Take a **Financial Services** example — customers might receive messages like:
 - Account opening confirmation
 - Loan application received
@@ -29,7 +27,6 @@ Uhh… it’s cumbersome and error-prone. It requires **a lot of manual work** a
 
 And this is exactly where **AI** can step in — not necessarily to create the customer messages themselves, but to **standardize and accelerate the process of message template generation!**
 
----
 ## Use Case
 Let’s imagine a **messaging platform for a bank** that communicates with its customers. The standard format is **HTML**, and all message types must follow the same tone, structure, and styling.
 
@@ -40,7 +37,6 @@ When a new business case arises — for example, *“A customer wants to request
 
 Optionally, the admin can provide a draft version of the template or simply leave it empty — and the AI takes care of the rest. The AI analyzes existing templates, retrieves placeholder definitions, and generates a **new, well-structured, stylistically consistent HTML message** that fits perfectly with the other templates.
 
----
 ## Technology Choices
 For this proof of concept, I chose a stack that combines **modern web development** with **AI integration** — and makes experimentation genuinely enjoyable:
 - **Angular with PrimeNG** – A perfect fit for building rich, interactive, and scalable single-page applications (SPAs). [PrimeNG](https://primeng.org/) provides a great set of ready-to-use UI components.
@@ -49,7 +45,6 @@ For this proof of concept, I chose a stack that combines **modern web developmen
 - **[Quarkus](https://quarkus.io/)** – A cloud-native Java framework that integrates seamlessly with LangChain4j. Registering an AI service is annotation-based, and exposing tools is as easy as annotating your code. And honestly — developing with Quarkus is just *fun*.
 - **[Quinoa](https://github.com/quarkiverse/quarkus-quinoa)** – A Quarkus extension that simplifies building and serving Angular (or other SPA) applications directly from your backend. It eliminates much of the setup hassle.
 
----
 ## Architecture
 Angular applications typically run on a Node.js server. However, with **Quarkus’s Quinoa extension**, Quarkus automatically starts the Node.js server when the application runs, seamlessly serving the Angular app. Since Angular operates on the client side, backend communication happens via **REST APIs**. Quarkus automatically generates an [OpenAPI](https://www.openapis.org/) schema, which I used with [Orval](https://orval.dev/) to generate RESTful clients as Angular services (though other tools could be used as well).
 
@@ -71,7 +66,6 @@ Here’s how the flow works:
 
 The final output always follows the **same structure, style, and placeholder rules** as other templates — ensuring consistency across the entire messaging platform.
 
----
 ## Installation
 ### Prerequisites
 - JDK 21 or higher
