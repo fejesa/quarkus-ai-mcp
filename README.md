@@ -1,67 +1,85 @@
-# quarkus-ai-mcp
+# How I Built an AI-Powered Template Generator with Quarkus, LangChain4j, and Ollama
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+## Introduction
+Businesses have customers, right? And many of them provide online services — shopping, banking, telecom, insurance, and so on.  
+But communicating with customers is never easy, especially in the digital era. Which channels are the right ones for a given business? Instant messaging, voice calls, or classic text-based messages?  
+What should the tone and style be — formal, friendly, or conversational?  
+And most importantly: **what exactly does the business want to communicate?**
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+We can agree that most online services rely heavily on **text-based messaging** when communicating with their customers.  
+Sometimes the messages are sent directly via email, other times through a **dedicated in-app messaging system**, where customers have a personal inbox.  
+Typically, these messages are **HTML formatted** — for good reason: better readability, structured layout, support for images and hyperlinks, and a more professional look.
 
-## Running the application in dev mode
+Every business has its own communication style — formal or informal, personal or official — and all customer messages need to follow that same consistent structure and tone. This helps customers easily recognize and understand communications coming from the business.
 
-You can run your application in dev mode that enables live coding using:
+Now, imagine a company that has **dozens or even hundreds of customer notification types.**  
+Take a **Financial Services** example — customers might receive messages like:
+- Account opening confirmation
+- Loan application received
+- Loan approval notification
+- Overdue payment notice
+- Account statement available
+- Security alert (e.g., suspicious activity detected)
 
-```shell script
-./mvnw quarkus:dev
-```
+Each message type is typically based on a **template**, and each template contains **placeholders** (like `[[customer_id]]`, `[[branch_name]]`, `[[contact_phone]]`, etc.).  
+Whenever an event occurs that triggers a notification, the messaging system fills those placeholders with real customer data and sends the message.
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+So far, so good. But this raises a few questions:
 
-## Packaging and running the application
+- How can a business ensure that all message types share the same format and style, especially when there are hundreds of templates?
+- How many placeholders should exist — and which ones should be used in each template?
 
-The application can be packaged using:
+Uhh… it’s cumbersome and error-prone. It requires **a lot of manual work** and coordination between teams.
 
-```shell script
-./mvnw package
-```
+And this is exactly where **AI** can step in — not necessarily to create the customer messages themselves, but to **standardize and accelerate the process of message template generation!**
 
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+---
+## Use Case
+Let’s imagine a **messaging platform for a bank** that communicates with its customers.  
+The standard format is **HTML**, and all message types must follow the same tone, structure, and styling.
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+Templates contain reusable placeholders such as customer name, ID, branch name, contact details, and so on.  
+When a new business case arises — for example, *“A customer wants to request an additional Mastercard”* — an admin just needs to describe the use case in natural language, like:
 
-If you want to build an _über-jar_, execute the following command:
+> “I need a template that describes the process by which a customer can request an additional Mastercard from the bank.”
 
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
-```
+Optionally, the admin can provide a draft version of the template or simply leave it empty — and the AI takes care of the rest.
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+The AI analyzes existing templates, retrieves placeholder definitions, and generates a **new, well-structured, stylistically consistent HTML message** that fits perfectly with the other templates.
 
-## Creating a native executable
+---
+## Technology Choices
+For this proof of concept, I chose a stack that combines **modern web development** with **AI integration** — and makes experimentation genuinely enjoyable:
 
-You can create a native executable using:
+- **Angular with PrimeNG** – A perfect fit for building rich, interactive, and scalable single-page applications (SPAs). [PrimeNG](https://primeng.org/) provides a great set of ready-to-use UI components.
+- **[LangChain4j](https://docs.langchain4j.dev/)** – An open, composable Java framework that defines a standard interface for LLMs, tools, and data sources. It makes building AI-driven workflows in Java straightforward.
+- **[Ollama](https://ollama.com/)** – A local LLM runtime that’s simple to use and well-integrated. For this experiment, I used the `gpt-oss:20b` model, which offered a great balance between performance and quality.
+- **[Quarkus](https://quarkus.io/)** – A cloud-native Java framework that integrates seamlessly with LangChain4j. Registering an AI service is annotation-based, and exposing tools is as easy as annotating your code. And honestly — developing with Quarkus is just *fun*.
+- **[Quinoa](https://github.com/quarkiverse/quarkus-quinoa)** – A Quarkus extension that simplifies building and serving Angular (or other SPA) applications directly from your backend. It eliminates much of the setup hassle.
 
-```shell script
-./mvnw package -Dnative
-```
+---
+## Architecture
+Angular applications typically run on a Node.js server.  
+However, with **Quarkus’s Quinoa extension**, Quarkus automatically starts the Node.js server when the application runs, seamlessly serving the Angular app.
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
+Since Angular operates on the client side, backend communication happens via **REST APIs**.  
+Quarkus automatically generates an [OpenAPI](https://www.openapis.org/) schema, which I used with [Orval](https://orval.dev/) to generate RESTful clients as Angular services (though other tools could be used as well).
 
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
+For the editor, I chose [Quill](https://quilljs.com/), a free, open-source, WYSIWYG rich text editor with a modular, customizable architecture. PrimeNG conveniently includes an integrated Quill-based editor, which made the frontend implementation straightforward.
 
-You can then execute your native executable with: `./target/quarkus-ai-mcp-1.0.0-SNAPSHOT-runner`
+Message templates are stored as files (for simplicity), while **template metadata and placeholders** (name, description, etc.) are stored in a **PostgreSQL database**.  
+These are made accessible to the AI model via the [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) — a standard that allows language models to call external tools (such as database queries, APIs, or computations) during reasoning.
 
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
+![Architecture Diagram](./docs/architecture.png)
 
-## Related Guides
+Here’s how the flow works:
 
-- Quinoa ([guide](https://quarkiverse.github.io/quarkiverse-docs/quarkus-quinoa/dev/index.html)): Develop, build, and serve your npm-compatible web applications such as React, Angular, Vue, Lit, Svelte, Astro, SolidJS, and others alongside Quarkus.
+1. The user requests template generation from the frontend.
+2. A REST call is made to the registered AI service in Quarkus.
+3. The AI service invokes the configured MCP tools to fetch context — existing templates and placeholder definitions.
+4. The model analyzes this information and generates or updates the HTML template accordingly.
+5. The generated template is returned and rendered in the frontend’s editor.
+6. If needed, the user can manually fix invalid tags or fine-tune the content.
 
-## Provided Code
-
-### Quinoa
-
-Quinoa codestart added a tiny Vite app in src/main/webui. The page is configured to be visible on <a href="/quinoa">/quinoa</a>.
-
-[Related guide section...](https://quarkiverse.github.io/quarkiverse-docs/quarkus-quinoa/dev/index.html)
-
+The final output always follows the **same structure, style, and placeholder rules** as other templates — ensuring consistency across the entire messaging platform.
+👇
