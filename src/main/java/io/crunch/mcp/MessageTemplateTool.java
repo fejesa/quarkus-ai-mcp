@@ -105,7 +105,7 @@ public class MessageTemplateTool {
             name = "get_message_templates",
             description = "Fetch all message templates"
     )
-    public List<MessageTemplate> messageTemplates() {
+    public List<MessageTemplate> getMessageTemplates() {
         Log.info("Loading all templates from folder: " + templatesFolder);
         return MessageTemplateDescriptor.<MessageTemplateDescriptor>streamAll()
                 .map(this::getMessageTemplate)
