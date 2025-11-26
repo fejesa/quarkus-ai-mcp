@@ -10,6 +10,10 @@ public class McpTestProfile implements QuarkusTestProfile {
     public Map<String, String> getConfigOverrides() {
         return Map.of(
                 "quarkus.langchain4j.mcp.template-generator.url", "http://localhost:8081/mcp/sse",
-                "quarkus.http.test-timeout", "60s");
+                "quarkus.langchain4j.ollama.chat-model.model-id", "llama3.1",
+                "quarkus.http.test-timeout", "60s",
+                "quarkus.otel.enabled", "false",
+                "quarkus.otel.metrics.enabled", "false",
+                "quarkus.observability.enabled", "false");
     }
 }
