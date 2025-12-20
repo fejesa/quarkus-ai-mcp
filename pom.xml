@@ -12,10 +12,10 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
         <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-        <quarkus.platform.version>3.30.1</quarkus.platform.version>
-        <quarkus-mcp-sse.version>1.7.3</quarkus-mcp-sse.version>
+        <quarkus.platform.version>3.30.4</quarkus.platform.version>
+        <quarkus-mcp.version>1.8.1</quarkus-mcp.version>
         <quarkus-langchain4j.version>1.4.2</quarkus-langchain4j.version>
-        <quarkus-quinoa.version>2.7.0</quarkus-quinoa.version>
+        <quarkus-quinoa.version>2.7.1</quarkus-quinoa.version>
         <assertj-core.version>3.27.6</assertj-core.version>
         <ollama.testcontainer.version>2.0.1</ollama.testcontainer.version>
         <skipITs>true</skipITs>
@@ -62,13 +62,13 @@
         </dependency>
         <dependency>
             <groupId>io.quarkiverse.mcp</groupId>
-            <artifactId>quarkus-mcp-server-sse</artifactId>
-            <version>${quarkus-mcp-sse.version}</version>
+            <artifactId>quarkus-mcp-server-http</artifactId>
+            <version>${quarkus-mcp.version}</version>
         </dependency>
         <dependency>
             <groupId>io.quarkiverse.mcp</groupId>
             <artifactId>quarkus-mcp-server-sse-client</artifactId>
-            <version>${quarkus-mcp-sse.version}</version>
+            <version>${quarkus-mcp.version}</version>
         </dependency>
         <dependency>
             <groupId>io.quarkiverse.langchain4j</groupId>
@@ -119,7 +119,7 @@
         <dependency>
             <groupId>io.quarkiverse.mcp</groupId>
             <artifactId>quarkus-mcp-server-test</artifactId>
-            <version>${quarkus-mcp-sse.version}</version>
+            <version>${quarkus-mcp.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
