@@ -1,7 +1,6 @@
 import {ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection} from '@angular/core';
 import {provideRouter} from '@angular/router';
 import {routes} from './app.routes';
-import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
 import {provideClientHydration, withEventReplay} from '@angular/platform-browser';
 import {provideHttpClient, withFetch} from '@angular/common/http';
 import {providePrimeNG} from "primeng/config";
@@ -46,12 +45,6 @@ export const appConfig: ApplicationConfig = {
          * - Improves performance and simplifies cross-platform usage.
          */
         provideHttpClient(withFetch()),
-        /**
-         * Enables asynchronous animations support.
-         * - This variant loads the animation module asynchronously to improve
-         *   startup performance in modern Angular builds.
-         */
-        provideAnimationsAsync(),
         /**
          * Configures PrimeNG’s global UI settings and theming.
          * - The `Aura` theme (from PrimeUIX) is used as the global visual preset.

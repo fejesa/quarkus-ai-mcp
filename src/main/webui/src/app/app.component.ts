@@ -5,7 +5,7 @@ import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {EditorModule} from 'primeng/editor';
 import {MessageModule} from 'primeng/message';
-import {CommonModule} from '@angular/common';
+
 import {FloatLabelModule} from 'primeng/floatlabel';
 import {ProgressBarModule} from 'primeng/progressbar';
 import {MessageTemplateAPIService} from "./api/service/message-template.service";
@@ -14,16 +14,15 @@ import {MessageTemplateAPIService} from "./api/service/message-template.service"
     selector: 'app-root',
     standalone: true,
     imports: [
-        CommonModule,
-        RouterOutlet,
-        InputTextModule,
-        ButtonModule,
-        EditorModule,
-        MessageModule,
-        FormsModule,
-        FloatLabelModule,
-        ProgressBarModule
-    ],
+    RouterOutlet,
+    InputTextModule,
+    ButtonModule,
+    EditorModule,
+    MessageModule,
+    FormsModule,
+    FloatLabelModule,
+    ProgressBarModule
+],
     providers: [
         MessageTemplateAPIService
     ],
