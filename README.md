@@ -101,7 +101,7 @@ quarkus.http.port = 8080
 
 # PostgreSQL database automatically created by Dev Services with the following settings
 quarkus.devservices.enabled = true
-quarkus.datasource.devservices.port = 5432
+quarkus.datasource.devservices.port = 5433
 quarkus.datasource.devservices.db-name = quarkus
 quarkus.datasource.devservices.username = quarkus
 quarkus.datasource.devservices.password = quarkus
@@ -146,7 +146,7 @@ quarkus.quinoa.package-manager-install.node-version = 22.12.0
 quarkus.quinoa.package-manager-install.npm-version = 10.9.0
 
 # To enable the UI live-coding dev server, set a start script and set the port in the app config. Quinoa will transparently proxy relevant requests to the given port
-quarkus.quinoa.dev-server-port = 4200
+quarkus.quinoa.dev-server.port = 4200
 # Single Page application routing; when enabled, to allow SPA routing, all relevant requests will be internally re-routed to index.html, this way the javascript can take care of the route inside the web-application.
 quarkus.quinoa.enable-spa-routing = true
 
@@ -160,7 +160,7 @@ quarkus.http.cors.headers = accept, authorization, content-type, x-requested-wit
 quarkus.http.cors.methods = POST,GET,PUT,DELETE
 
 # The location of the template files; can be relative or absolute path.
-app.resources.location = ./templates
+app.resources.location = ./resources
 
 # LangFuse OpenTelemetry settings; set to false to disable
 quarkus.otel.enabled = true
