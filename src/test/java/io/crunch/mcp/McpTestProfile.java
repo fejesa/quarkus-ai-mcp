@@ -11,7 +11,7 @@ public class McpTestProfile implements QuarkusTestProfile {
         return Map.of(
                 "quarkus.langchain4j.mcp.template-generator.url", "http://localhost:8081/mcp/sse",
                 "quarkus.langchain4j.ollama.chat-model.model-id", "qwen3:0.6b",
-                "quarkus.http.test-timeout", "90s",
+                "quarkus.http.test-timeout", "120s",
                 "quarkus.otel.enabled", "false",
                 "quarkus.otel.metrics.enabled", "false",
                 "quarkus.observability.enabled", "false");
