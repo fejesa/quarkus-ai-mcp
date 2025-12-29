@@ -27,7 +27,7 @@ import java.util.List;
  * <h2>Configuration</h2>
  * The path to the message templates directory must be defined in the Quarkus configuration:
  * <pre>{@code
- * app.templates.location=resources/templates
+ * app.resources.location=resources/templates
  * }</pre>
  * The path is resolved relative to the application root and normalized to an absolute location.
  *
@@ -53,7 +53,7 @@ public class MessageTemplateTool {
     /**
      * Absolute path to the folder where message templates are stored.
      * <p>
-     * This folder is configured using the {@code app.templates.location} configuration key.
+     * This folder is configured using the {@code app.resources.location} configuration key.
      * The path is resolved relative to the application's working directory and normalized
      * to ensure consistent file resolution across environments.
      */
@@ -64,8 +64,11 @@ public class MessageTemplateTool {
      *
      * @param templatesFolder the base folder path for message templates, injected from configuration
      */
-    public MessageTemplateTool(@ConfigProperty(name = "app.templates.location") Path templatesFolder) {
-        this.templatesFolder = Paths.get(".").resolve(templatesFolder).toAbsolutePath().normalize();
+    public MessageTemplateTool(@ConfigProperty(name = "app.resources.location") Path resourcesFolder) {
+        this.templatesFolder = Paths.get(".")
+                .resolve(resourcesFolder)
+                .resolve("templates")
+                .toAbsolutePath().normalize();
     }
 
     /**

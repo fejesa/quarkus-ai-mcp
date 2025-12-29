@@ -160,7 +160,7 @@ quarkus.http.cors.headers = accept, authorization, content-type, x-requested-wit
 quarkus.http.cors.methods = POST,GET,PUT,DELETE
 
 # The location of the template files; can be relative or absolute path.
-app.templates.location = ./templates
+app.resources.location = ./templates
 
 # LangFuse OpenTelemetry settings; set to false to disable
 quarkus.otel.enabled = true
