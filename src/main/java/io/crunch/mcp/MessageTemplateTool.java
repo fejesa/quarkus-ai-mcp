@@ -5,6 +5,7 @@ import io.quarkus.logging.Log;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,6 +19,7 @@ import java.util.List;
  * <ul>
  *   <li>Listing all available message template parameters (placeholders) that can be used in template generation.</li>
  *   <li>Loading and returning all stored message templates from the configured template directory.</li>
+ *   <li>Providing a canonical footer section that must be appended verbatim to generated or updated templates.</li>
  * </ul>
  * <p>
  * The class is integrated with the {@code quarkus-langchain4j} or {@code quarkus-mcp} infrastructure,
@@ -35,6 +37,7 @@ import java.util.List;
  * <ul>
  *   <li>{@code list_template_parameters}: returns all valid placeholders (e.g., [[customer_id]], [[bank_name]]).</li>
  *   <li>{@code get_message_templates}: returns a list of all available message templates along with their names and descriptions.</li>
+ *   <li>{@code get_message_template_footer}: returns the fixed footer HTML content to be appended to templates.</li>
  * </ul>
  *
  * The AI model can use these tool results to:
@@ -60,14 +63,26 @@ public class MessageTemplateTool {
     private final Path templatesFolder;
 
     /**
+     * Absolute path to the folder where HTML sections, like header, footer, are stored.
+     * <p>
+     * This folder is configured using the {@code app.resources.location} configuration key.
+     * The path is resolved relative to the application's working directory and normalized
+     * to ensure consistent file resolution across environments.
+     */
+    private final Path sectionsFolder;
+
+    /**
      * Constructs a new {@code MessageTemplateTool} instance.
      *
-     * @param templatesFolder the base folder path for message templates, injected from configuration
+     * @param resourcesFolder the base folder path for message templates, injected from configuration
      */
     public MessageTemplateTool(@ConfigProperty(name = "app.resources.location") Path resourcesFolder) {
-        this.templatesFolder = Paths.get(".")
-                .resolve(resourcesFolder)
+        var root = Paths.get(".").resolve(resourcesFolder);
+        this.templatesFolder = root
                 .resolve("templates")
+                .toAbsolutePath().normalize();
+        this.sectionsFolder = root
+                .resolve("sections")
                 .toAbsolutePath().normalize();
     }
 
@@ -90,6 +105,43 @@ public class MessageTemplateTool {
     public List<MessageTemplateParameter> getTemplateParameters() {
         Log.info("Getting template parameters");
         return MessageTemplateParameter.listAll();
+    }
+
+    /**
+     * MCP tool that returns the canonical message template footer.
+     * <p>
+     * The returned content represents a <strong>fixed, authoritative footer section</strong>
+     * that must be appended verbatim to the end of a generated or updated message template.
+     * <p>
+     * <strong>Important usage rules for AI models:</strong>
+     * <ul>
+     *   <li>The footer content returned by this tool is <em>immutable</em> and must not be modified,
+     *       reformatted, truncated, or semantically altered in any way.</li>
+     *   <li>The AI model must treat the returned footer as a final HTML fragment and
+     *       append it <em>as-is</em> to the end of the message template.</li>
+     *   <li>If a new message template is generated, this footer must be appended after
+     *       the generated content.</li>
+     *   <li>If an existing template is updated, the footer must still be appended unchanged,
+     *       even if a similar footer already appears in the template.</li>
+     * </ul>
+     * <p>
+     * The footer is loaded from the configured {@code sections} directory and serves as the
+     * single source of truth for shared footer content such as branding, legal text,
+     * or copyright information.
+     *
+     * @return the footer HTML content to be appended verbatim to message templates
+     * @throws MessageTemplateException if the footer file cannot be read
+     */
+    @Tool(
+            name = "get_message_template_footer",
+            description = "Fetch message template footer that can be appended to generated templates."
+    )
+    public String getMessageFooter() {
+        try {
+            return Files.readString(Paths.get(sectionsFolder.toString(), "message_template_footer"), StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            throw new MessageTemplateException("Error reading footer section", e);
+        }
     }
 
     /**
@@ -142,7 +194,7 @@ public class MessageTemplateTool {
      */
     private String loadTemplate(String name) {
         try {
-            return Files.readString(Paths.get(templatesFolder.toString(), name));
+            return Files.readString(Paths.get(templatesFolder.toString(), name), StandardCharsets.UTF_8);
         } catch (IOException e) {
             throw new MessageTemplateException("Error reading template file: " + name, e);
         }
