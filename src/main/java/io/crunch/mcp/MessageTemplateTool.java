@@ -121,8 +121,9 @@ public class MessageTemplateTool {
      *       append it <em>as-is</em> to the end of the message template.</li>
      *   <li>If a new message template is generated, this footer must be appended after
      *       the generated content.</li>
-     *   <li>If an existing template is updated, the footer must still be appended unchanged,
-     *       even if a similar footer already appears in the template.</li>
+     *   <li>If an existing template is updated, first check if a footer is already present.
+     *       If the footer is already present, do not append it again.
+     *       If the footer is missing, append the returned footer.</li>
      * </ul>
      * <p>
      * The footer is loaded from the configured {@code sections} directory and serves as the
