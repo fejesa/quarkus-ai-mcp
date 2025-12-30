@@ -8,7 +8,7 @@ import {TextareaModule} from "primeng/textarea";
 
 import {FloatLabelModule} from 'primeng/floatlabel';
 import {ProgressBarModule} from 'primeng/progressbar';
-import {MessageTemplateAPIService} from "./api/service/message-template.service";
+import {MessageTemplateAPIService} from "./api/service/message-template";
 
 @Component({
     selector: 'app-root',

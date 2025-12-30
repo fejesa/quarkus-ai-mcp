@@ -4,12 +4,9 @@ export default defineConfig({
   catalog: {
     /** The path of the generated OpenAPI scheme */
     input: 'api/message-template.yaml',
-    mode: 'single',
     output: {
       /** Generates the scheme and client implementation in different files */
-      mode: 'split',
-      /**  Path to the folder where you want to generate all your models. */
-      schemas: 'src/app/api/service',
+      mode: 'single',
       /** Path to the file which will contain the client implementation. */
       target: 'src/app/api/service/message-template.ts',
       /** Type of the client that we use */
