@@ -26,7 +26,7 @@ import {
 
 import type {
   MessageTemplateRequest
-} from '../model';
+} from './';
 
 
 
