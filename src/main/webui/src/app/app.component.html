@@ -3,11 +3,9 @@
         <span class="title">HTML Message Template Editor</span>
         <div class="content-input">
             <p-floatlabel>
-                <input pInputText id="over_label"
-                       [(ngModel)]="templateDescription"
-                       autocomplete="off"
-                       pSize="large"
-                       [style]="{width: '800px'}"/>
+                <textarea id="over_label" rows="5" cols="30"
+                          pTextarea [(ngModel)]="templateDescription" fluid [style]="{width: '800px'}">
+                </textarea>
                 <label for="over_label">Type prompt about the message template content</label>
             </p-floatlabel>
             <p-button
@@ -28,7 +26,7 @@
         <div class="content-input">
             <p-editor id="template_editor"
                       [(ngModel)]="templateContent"
-                      [style]="{ height: '500px', width: '900px' }">
+                      [style]="{ height: '600px', width: '900px' }">
             </p-editor>
         </div>
     </div>

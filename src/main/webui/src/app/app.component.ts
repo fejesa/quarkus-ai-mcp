@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RouterOutlet} from '@angular/router';
-import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {EditorModule} from 'primeng/editor';
 import {MessageModule} from 'primeng/message';
+import {TextareaModule} from "primeng/textarea";
 
 import {FloatLabelModule} from 'primeng/floatlabel';
 import {ProgressBarModule} from 'primeng/progressbar';
@@ -15,7 +15,7 @@ import {MessageTemplateAPIService} from "./api/service/message-template.service"
     standalone: true,
     imports: [
     RouterOutlet,
-    InputTextModule,
+    TextareaModule,
     ButtonModule,
     EditorModule,
     MessageModule,
