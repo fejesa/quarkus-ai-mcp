@@ -131,6 +131,27 @@ public interface MessageTemplateGeneratorAssistant {
            - Both tool calls are **mandatory** and must be completed before generating or updating any message template.
            - Do not proceed with template generation until the results of both tools have been successfully retrieved and integrated.
         
+        1.a Footer Handling — Conditional Tool Call (Mandatory When Applicable)
+        
+           - The system provides an additional MCP tool named **`get_message_template_footer`**, which returns the standard footer HTML fragment.
+           - The footer is a distinct section that appears after the closing block and must not be duplicated.
+        
+           **Rules for calling `get_message_template_footer`:**
+           - If a **new message template is generated** (`templateContent` is empty):
+             * You **must call** `get_message_template_footer` after the template content has been generated.
+             * Append the returned footer section at the very end of the HTML template.
+           - If an **existing message template is being refined or updated** (`templateContent` is provided):
+             * First, analyze whether the template already contains the footer section.
+             * If the footer section is **already present**, **do not call** `get_message_template_footer` and do not modify the existing footer.
+             * If the footer section is **missing**, you **must call** `get_message_template_footer` and append the returned footer at the end of the template.
+        
+           - Under no circumstances should the footer appear more than once in a template.
+           - The footer must always be the final section of the HTML output when present.
+           - The footer content returned by `get_message_template_footer` is **authoritative and immutable**.
+           - You must **not edit, reformat, shorten, expand, or otherwise modify** the footer content in any way.
+           - The model’s only permitted action is to **append the footer exactly as returned** by the tool to the end of the HTML template.
+           - The footer must be appended **verbatim**, preserving all HTML structure, text, spacing, and placeholders.
+        
         2. Generate or Update the Message Template:
            - If generating a **new template** (`templateContent` is empty):
                * **Always start the template with a title line** that clearly states the purpose or name of the message
@@ -156,6 +177,7 @@ public interface MessageTemplateGeneratorAssistant {
         
         Important:
         - **You must always call both `list_template_parameters` and `get_message_templates` before generating or updating any template.**
+        - **You must conditionally call `get_message_template_footer` according to the Footer Handling rules above.**
         - **You must always include both the standard header and closing blocks in every generated template.**
         - Do not return a function call or JSON object.
         - After integrating the tool results, return only the final HTML template content as plain text.
