@@ -1,5 +1,6 @@
 package io.crunch.mcp;
 
+import dev.langchain4j.service.MemoryId;
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
 import io.quarkiverse.langchain4j.RegisterAiService;
@@ -69,7 +70,7 @@ import io.quarkiverse.langchain4j.mcp.runtime.McpToolBox;
  * @see MessageTemplateRequest
  */
 @RegisterAiService()
-public interface MessageTemplateGeneratorAssistant {
+public interface MessageTemplateAssistant {
 
     /**
      * Generates or refines a Banking/Financial Services message template based on
@@ -166,5 +167,5 @@ public interface MessageTemplateGeneratorAssistant {
         """
     )
     @McpToolBox("template-generator")
-    String generateTemplate(@UserMessage MessageTemplateRequest request);
+    String generateTemplate(@MemoryId String sessionId, @UserMessage MessageTemplateRequest request);
 }
