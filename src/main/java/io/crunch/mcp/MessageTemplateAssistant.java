@@ -101,6 +101,8 @@ public interface MessageTemplateAssistant {
      *
      * @param request The {@link MessageTemplateRequest} object containing the message
      *                description and optional existing template content.
+     * @param sessionId To assign different memory instances to different users or conversations,
+     *                annotate a method parameter with {@link MemoryId}
      * @return A refined or newly generated HTML message template as a {@link String}.
      */
     @SystemMessage(
