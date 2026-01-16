@@ -5,7 +5,7 @@ export default defineConfig({
     /** The path of the generated OpenAPI scheme */
     input: 'api/message-template.yaml',
     output: {
-      /** Generates the scheme and client implementation in different files */
+      /** Generates the scheme and client implementation in the same file */
       mode: 'single',
       /** Path to the file which will contain the client implementation. */
       target: 'src/app/api/service/message-template.ts',
