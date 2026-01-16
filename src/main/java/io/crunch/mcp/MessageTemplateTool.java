@@ -109,7 +109,7 @@ public class MessageTemplateTool {
             description = "Fetch all message templates"
     )
     public List<MessageTemplate> getMessageTemplates() {
-        Log.info("Loading all templates from folder: " + templatesFolder);
+        Log.infof("Loading all templates from folder: %s", templatesFolder);
         return MessageTemplateDescriptor.<MessageTemplateDescriptor>streamAll()
                 .map(this::getMessageTemplate)
                 .toList();
