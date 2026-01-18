@@ -1,5 +1,5 @@
 services:
-  postgres:
+  message-template-postgres:
     image: postgres:15
     container_name: message-template-postgres
     restart: no
@@ -7,10 +7,12 @@ services:
       POSTGRES_DB: quarkus
       POSTGRES_USER: quarkus
       POSTGRES_PASSWORD: quarkus
+    # Set postgres custom port to avoid port conflict with LangFuse postgres
+    command: -p '5433'
     ports:
-      - "5433:5432"
+      - "5433:5433"
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - message-template-postgres-data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U quarkus"]
       interval: 5s
@@ -24,8 +26,7 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     depends_on:
-      postgres:
-        condition: service_healthy
+      - message-template-postgres
     ports:
       - "8080:8080"
       - "4200:4200"
@@ -37,35 +38,47 @@ services:
       # Application Datasource (PostgreSQL)
       QUARKUS_DATASOURCE_USERNAME: quarkus
       QUARKUS_DATASOURCE_PASSWORD: quarkus
-      QUARKUS_DATASOURCE_JDBC_URL: jdbc:postgresql://postgres:5432/quarkus
+      QUARKUS_DATASOURCE_JDBC_URL: jdbc:postgresql://message-template-postgres:5433/quarkus
       QUARKUS_HIBERNATE_ORM_SCHEMA_MANAGEMENT_STRATEGY: drop-and-create
       QUARKUS_HIBERNATE_ORM_LOG_SQL: true
 
       # MCP configuration
+      # We use HTTP transport for client-server communication in MCP context
       QUARKUS_LANGCHAIN4J_MCP_TEMPLATE_GENERATOR_TRANSPORT_TYPE: http
+      # The URL of the SSE endpoint. This only applies to MCP clients using the HTTP transport.
       QUARKUS_LANGCHAIN4J_MCP_TEMPLATE_GENERATOR_URL: http://message-template:8080/mcp/sse
+      # If set to true then JSON messages received/sent are logged.
       QUARKUS_MCP_SERVER_TRAFFIC_LOGGING_ENABLED: true
+      # The number of characters of a text message which will be logged if traffic logging is enabled, default is 200 characters.
       QUARKUS_MCP_SERVER_TRAFFIC_LOGGING_TEXT_LIMIT: 20000
 
       # Ollama (runs on host); values can be gpt-oss, llama3.1
       QUARKUS_LANGCHAIN4J_OLLAMA_CHAT_MODEL_MODEL_ID: gpt-oss
+      # Global timeout for requests to LLM APIs
       QUARKUS_LANGCHAIN4J_TIMEOUT: 90s
+      # The temperature to use for the chat model. Temperature is a value between 0 and 1, where lower values make the model more deterministic and higher values make it more creative.
       QUARKUS_LANGCHAIN4J_TEMPERATURE: 0.2
       QUARKUS_LANGCHAIN4J_OLLAMA_BASE_URL: http://host.docker.internal:11434
       # Enable logging of client requests and responses to/from LLM APIs
       QUARKUS_LANGCHAIN4J_LOG_REQUESTS: true
       QUARKUS_LANGCHAIN4J_LOG_RESPONSES: true
 
-      # CORS for Angular
+      # Enable the CORS filter. This will allow the Angular client to access the Quarkus API.
       QUARKUS_HTTP_CORS_ENABLED: true
+      # The allowed origins for CORS requests. This is the URL of the Angular client.
       QUARKUS_HTTP_CORS_ORIGINS: http://localhost:4200
       QUARKUS_HTTP_CORS_HEADERS: accept,authorization,content-type,x-requested-with
+      # HTTP methods allowed for CORS.
       QUARKUS_HTTP_CORS_METHODS: POST,GET,PUT,DELETE
 
       QUARKUS_OTEL_ENABLED: false
       QUARKUS_OTEL_METRICS_ENABLED: false
 
+      QUARKUS_OTEL_EXPORTER_OTLP_TRACES_HEADERS: "Authorization=Basic cGstbGYtZGY5YzBhZTYtMDAzNS00NTVhLWI3ZGItZTYyMTFhODhiYzkxOnNrLWxmLWFjNTA1ZGU2LTQ1NzctNDAwYy1hNWEwLTVlYjU1ZDhjZDQ0YQ=="
+      QUARKUS_OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: "http://host.docker.internal:3000/api/public/otel"
+
+      # The location of the template files WITHIN the container
       APP_RESOURCES_LOCATION: "/resources"
 
 volumes:
-  postgres-data:
+  message-template-postgres-data:
