@@ -1,0 +1,71 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: message-template-postgres
+    restart: no
+    environment:
+      POSTGRES_DB: quarkus
+      POSTGRES_USER: quarkus
+      POSTGRES_PASSWORD: quarkus
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U quarkus"]
+      interval: 5s
+      timeout: 2s
+      retries: 2
+
+  message-template:
+    image: quarkus-workshop/message-template:1.0.0-SNAPSHOT
+    container_name: message-template-app
+    restart: no
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+      - "4200:4200"
+    environment:
+      QUARKUS_HTTP_HOST: 0.0.0.0
+      QUARKUS_HTTP_PORT: 8080
+      QUARKUS_QUINOA_DEV_SERVER_PORT: 4200
+
+      # Application Datasource (PostgreSQL)
+      QUARKUS_DATASOURCE_USERNAME: quarkus
+      QUARKUS_DATASOURCE_PASSWORD: quarkus
+      QUARKUS_DATASOURCE_JDBC_URL: jdbc:postgresql://postgres:5432/quarkus
+      QUARKUS_HIBERNATE_ORM_SCHEMA_MANAGEMENT_STRATEGY: drop-and-create
+      QUARKUS_HIBERNATE_ORM_LOG_SQL: true
+
+      # MCP configuration
+      QUARKUS_LANGCHAIN4J_MCP_TEMPLATE_GENERATOR_TRANSPORT_TYPE: http
+      QUARKUS_LANGCHAIN4J_MCP_TEMPLATE_GENERATOR_URL: http://message-template:8080/mcp/sse
+      QUARKUS_MCP_SERVER_TRAFFIC_LOGGING_ENABLED: true
+      QUARKUS_MCP_SERVER_TRAFFIC_LOGGING_TEXT_LIMIT: 20000
+
+      # Ollama (runs on host); values can be gpt-oss, llama3.1
+      QUARKUS_LANGCHAIN4J_OLLAMA_CHAT_MODEL_MODEL_ID: gpt-oss
+      QUARKUS_LANGCHAIN4J_TIMEOUT: 90s
+      QUARKUS_LANGCHAIN4J_TEMPERATURE: 0.2
+      QUARKUS_LANGCHAIN4J_OLLAMA_BASE_URL: http://host.docker.internal:11434
+      # Enable logging of client requests and responses to/from LLM APIs
+      QUARKUS_LANGCHAIN4J_LOG_REQUESTS: true
+      QUARKUS_LANGCHAIN4J_LOG_RESPONSES: true
+
+      # CORS for Angular
+      QUARKUS_HTTP_CORS_ENABLED: true
+      QUARKUS_HTTP_CORS_ORIGINS: http://localhost:4200
+      QUARKUS_HTTP_CORS_HEADERS: accept,authorization,content-type,x-requested-with
+      QUARKUS_HTTP_CORS_METHODS: POST,GET,PUT,DELETE
+
+      QUARKUS_OTEL_ENABLED: false
+      QUARKUS_OTEL_METRICS_ENABLED: false
+
+      APP_RESOURCES_LOCATION: "/resources"
+
+volumes:
+  postgres-data:
