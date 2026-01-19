@@ -62,7 +62,7 @@ public class MessageTemplateTool {
     /**
      * Constructs a new {@code MessageTemplateTool} instance.
      *
-     * @param templatesFolder the base folder path for message templates, injected from configuration
+     * @param resourcesFolder the base folder path for message templates, injected from configuration
      */
     public MessageTemplateTool(@ConfigProperty(name = "app.resources.location") Path resourcesFolder) {
         this.templatesFolder = Paths.get(".")
