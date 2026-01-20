@@ -52,7 +52,7 @@ services:
       # The number of characters of a text message which will be logged if traffic logging is enabled, default is 200 characters.
       QUARKUS_MCP_SERVER_TRAFFIC_LOGGING_TEXT_LIMIT: 20000
 
-      # Ollama (runs on host); values can be gpt-oss, llama3.1
+      # Ollama (runs on host)
       QUARKUS_LANGCHAIN4J_OLLAMA_CHAT_MODEL_MODEL_ID: gpt-oss
       # Global timeout for requests to LLM APIs
       QUARKUS_LANGCHAIN4J_TIMEOUT: 90s
@@ -71,8 +71,8 @@ services:
       # HTTP methods allowed for CORS.
       QUARKUS_HTTP_CORS_METHODS: POST,GET,PUT,DELETE
 
-      QUARKUS_OTEL_ENABLED: false
-      QUARKUS_OTEL_METRICS_ENABLED: false
+      QUARKUS_OTEL_ENABLED: true
+      QUARKUS_OTEL_METRICS_ENABLED: true
 
       QUARKUS_OTEL_EXPORTER_OTLP_TRACES_HEADERS: "Authorization=Basic cGstbGYtZGY5YzBhZTYtMDAzNS00NTVhLWI3ZGItZTYyMTFhODhiYzkxOnNrLWxmLWFjNTA1ZGU2LTQ1NzctNDAwYy1hNWEwLTVlYjU1ZDhjZDQ0YQ=="
       QUARKUS_OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: "http://host.docker.internal:3000/api/public/otel"
