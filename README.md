@@ -188,6 +188,12 @@ quarkus.otel.exporter.otlp.logs.endpoint = http://localhost:5318
 quarkus.otel.exporter.otlp.logs.protocol = http/protobuf
 ```
 
+# Build a Docker image
+To build the docker image, execute the following command
+```
+mvn clean install -DskipTests -Dquarkus.container-image.build=true
+```
+
 ## Observability, Monitoring & Tracing
 - Observability is essential — it gives us visibility into what happens under the hood when our application runs, enabling reliable debugging, performance tuning, and root-cause analysis.
 - We rely on the “three pillars” of observability: **metrics** (system performance and health), **logs** (event history and context), and **traces** (detailed journeys of requests and LLM interactions).
