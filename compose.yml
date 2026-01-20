@@ -65,8 +65,8 @@ services:
 
       # Enable the CORS filter. This will allow the Angular client to access the Quarkus API.
       QUARKUS_HTTP_CORS_ENABLED: true
-      # The allowed origins for CORS requests. This is the URL of the Angular client.
-      QUARKUS_HTTP_CORS_ORIGINS: http://localhost:4200
+      # The allowed origins for CORS requests. Port 4200 is the URL of the Angular client, port 6274 is from MCP-Inspector
+      QUARKUS_HTTP_CORS_ORIGINS: http://localhost:4200, http://localhost:6274
       QUARKUS_HTTP_CORS_HEADERS: accept,authorization,content-type,x-requested-with
       # HTTP methods allowed for CORS.
       QUARKUS_HTTP_CORS_METHODS: POST,GET,PUT,DELETE

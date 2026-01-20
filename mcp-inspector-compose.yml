@@ -1,11 +1,10 @@
 services:
   mcpinspector:
     image: ghcr.io/modelcontextprotocol/inspector:latest
-    container_name: mcpinspector
     restart: "no"
     ports:
-      - "127.0.0.1:6274:6274"
-      - "127.0.0.1:6277:6277"
+      - "6274:6274"
+      - "6277:6277"
     environment:
       HOST: 0.0.0.0
       MCP_AUTO_OPEN_ENABLED: true
