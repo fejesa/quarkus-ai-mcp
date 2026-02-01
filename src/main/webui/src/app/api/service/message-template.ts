@@ -64,7 +64,7 @@ export class MessageTemplateAPIService {
     messageTemplateRequest: MessageTemplateRequest,
     options?: HttpClientOptions & { observe?: any },
   ): Observable<any> {
-    return this.http.post(`http://127.0.0.1:8080/api`, messageTemplateRequest, {
+    return this.http.post(`/api`, messageTemplateRequest, {
       responseType: 'text',
       ...options,
     });
