@@ -12,7 +12,7 @@ export default defineConfig({
       /** Type of the client that we use */
       client: 'angular',
       /** Base url of the API; it is generated to the client implementation. It should be a configuration value. */
-      baseUrl: 'http://127.0.0.1:8080'
+      baseUrl: ''
     },
     hooks: {
       afterAllFilesWrite: 'prettier --write',
